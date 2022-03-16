@@ -1,0 +1,85 @@
+openapi: 3.0.2
+info:
+    title: Recommendation API
+    version: 1.0.0
+    description: Recommendation API for the Globex Retail site.
+paths:
+    '/score/{category}':
+        description: ''
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/aggregated-score'
+                    description: Successful response. Returns an aggregated score.
+                '404':
+                    description: No data found for the given category.
+                '500':
+                    description: Internal Server Error.
+            security:
+                -
+                    recommendation-api: []
+            operationId: get-score
+            summary: Get an aggregated score
+            description: ''
+        parameters:
+            -
+                name: category
+                description: Identifier for the score category.
+                schema:
+                    type: string
+                in: path
+                required: true
+components:
+    schemas:
+        aggregated-score:
+            title: Root Type for aggregated-score
+            description: ''
+            type: array
+            items:
+                type: object
+                properties:
+                    productId:
+                        type: string
+                    score:
+                        format: int32
+                        type: integer
+            example:
+                -
+                    productId: i28450
+                    score: 148
+                -
+                    productId: b27290
+                    score: 145
+                -
+                    productId: s32841
+                    score: 141
+                -
+                    productId: k23026
+                    score: 132
+                -
+                    productId: p21283
+                    score: 127
+                -
+                    productId: o28725
+                    score: 125
+                -
+                    productId: c11678
+                    score: 124
+                -
+                    productId: q15462
+                    score: 121
+    securitySchemes:
+        recommendation-api:
+            type: apiKey
+            name: api_key
+            in: query
+tags:
+    -
+        name: retail
+        description: ''
+    -
+        name: recommendation
+        description: ''
