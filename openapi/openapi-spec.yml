@@ -3,6 +3,9 @@ info:
     title: Recommendation API
     version: 1.0.0
     description: Recommendation API for the Globex Retail site.
+    license:
+        name: MIT License
+        url: 'https://opensource.org/licenses/MIT'
 paths:
     '/score/{category}':
         description: ''
