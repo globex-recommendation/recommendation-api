@@ -10,12 +10,41 @@ paths:
     '/score/{category}':
         description: ''
         get:
+            parameters:
+                -
+                    examples:
+                        product:
+                            value: product
+                    name: category
+                    description: Identifier for the score category.
+                    schema:
+                        type: string
+                    in: path
+                    required: true
             responses:
                 '200':
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/aggregated-score'
+                            examples:
+                                product:
+                                    value:
+                                        -
+                                            productId: '329299'
+                                            score: 148
+                                        -
+                                            productId: '329199'
+                                            score: 145
+                                        -
+                                            productId: '165613'
+                                            score: 141
+                                        -
+                                            productId: '165614'
+                                            score: 138
+                                        -
+                                            productId: '165954'
+                                            score: 132
                     description: Successful response. Returns an aggregated score.
                 '404':
                     description: No data found for the given category.
@@ -51,29 +80,20 @@ components:
                         type: integer
             example:
                 -
-                    productId: i28450
+                    productId: '329299'
                     score: 148
                 -
-                    productId: b27290
+                    productId: '329199'
                     score: 145
                 -
-                    productId: s32841
+                    productId: '165613'
                     score: 141
                 -
-                    productId: k23026
+                    productId: '165614'
+                    score: 138
+                -
+                    productId: '165954'
                     score: 132
-                -
-                    productId: p21283
-                    score: 127
-                -
-                    productId: o28725
-                    score: 125
-                -
-                    productId: c11678
-                    score: 124
-                -
-                    productId: q15462
-                    score: 121
     securitySchemes:
         recommendation-api:
             type: apiKey
